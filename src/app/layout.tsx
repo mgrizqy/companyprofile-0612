@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Anek_Tamil, Anton, Inter, Oswald } from "next/font/g
 import "./globals.css";
 import { NavBar } from "./components/NavBar";
 import StoreProvider from "./components/StoreProvider";
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +51,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${anekTamil.variable} ${anton.variable} ${inter.variable} ${oswald.variable}  antialiased`}
       >
         <StoreProvider>
-
+        <ToastContainer/>
 
           <NavBar></NavBar>
           {children}

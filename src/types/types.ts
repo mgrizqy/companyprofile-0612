@@ -8,6 +8,6 @@ export interface Post {
   thumbnail?: string;
   category?: string;
   content: string;
-  isPublished?: boolean;
+  published: boolean;
   created: number;
 }

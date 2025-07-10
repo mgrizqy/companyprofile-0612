@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Post } from "@/types/types";
 import { blogCategories } from "@/data/categoriesData";
 import Image from "next/image";
+import { Footer } from "../components/Footer";
 
 export default function BlogPage() {
 
@@ -61,7 +62,7 @@ export default function BlogPage() {
         <main>
             <PageHeader
                 title="Our Blog"
-                subtitle="Wawasan tentang pelatihan, nutrisi, dan gaya hidup Gold's Gym."
+                subtitle="Pengetahuan tentang pelatihan, nutrisi, dan gaya hidup Gold's Gym."
             />
             <div className="container mx-auto max-w-screen-xl py-16 px-4">
                 {isLoading ? (
@@ -146,6 +147,8 @@ export default function BlogPage() {
                     </>
                 )}
             </div>
+
+            <Footer></Footer>
         </main>
     );
 }

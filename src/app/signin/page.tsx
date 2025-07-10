@@ -10,12 +10,13 @@ import { apiCall } from "@/helper/apiCall";
 import { setSignIn } from "@/lib/redux/features/userSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import { clearTimeout, setTimeout } from "timers";
+import { toast } from "react-toastify";
 
 export default function SignInPage() {
 
 
     const [isLoading, setIsLoading] = useState(false)
-    const [message, SetMessage] = useState("")
 
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
@@ -27,10 +28,11 @@ export default function SignInPage() {
 
 
 
+
+
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        SetMessage("")
 
         const email = emailRef.current?.value
         const password = passwordRef.current?.value
@@ -41,21 +43,22 @@ export default function SignInPage() {
             const res = await apiCall.get(`accounts`, { params: { where: urlWhere } })
 
             if (res.data.length === 0) {
-                SetMessage("Account doesn't exist");
+                toast.warning("Account doesn't exist or password is wrong")
                 setIsLoading(false)
                 return
             } else {
 
                 const user = res.data[0]
 
-                SetMessage(`Sign In successful!`)
+                toast.success(`Sign In successful!`)
 
-                dispatch(setSignIn({ObjectId : user.objectId, isAuth : true, email : user.email}))
+                dispatch(setSignIn({ ObjectId: user.objectId, isAuth: true, email: user.email }))
                 console.log(res.data);
 
                 localStorage.setItem("tkn", res.data[0].objectId)
                 localStorage.setItem("userEmail", res.data[0].email)
-                router.replace("/");
+                const routerNav = setTimeout(() => router.replace('/'), 1000)
+                return () => clearTimeout(routerNav)
 
 
             }
@@ -64,7 +67,7 @@ export default function SignInPage() {
 
         } catch (error) {
             console.log(error)
-            SetMessage("An error occured")
+            toast.error("An error occured")
         } finally {
             setIsLoading(false);
         }
@@ -97,10 +100,6 @@ export default function SignInPage() {
                                 {isLoading ? "Signing in..." : "Sign In"}
                             </Button>
 
-
-                            {message && (<p className={`text-center text-sm ${message.includes("successful") ? "text-green-600" : "text-red-600"}`}>
-                                {message}
-                            </p>)}
 
                         </form>
                     </CardContent>

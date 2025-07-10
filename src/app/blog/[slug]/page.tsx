@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: BlogParamSlug ) {
         
        
         <div className=' max-w-3xl mx-auto w-full mb-25'>
-            <p>{parse(postData.content)}</p>
+            <div className="leading-[30px]">{parse(postData.content)}</div>
         </div>
       </section>
         <Footer></Footer>

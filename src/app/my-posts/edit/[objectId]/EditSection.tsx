@@ -17,6 +17,8 @@ import { blogCategories } from '@/data/categoriesData';
 
 import { Post } from '@/types/types';
 import { generateSlug } from '@/helper/generateSlug';
+import { toast } from 'react-toastify';
+import { totalmem } from 'os';
 
 
 
@@ -24,43 +26,57 @@ export default function EditSection({ objectId }: { objectId: string }) {
 
     const router = useRouter();
     const { isAuth } = useAppSelector((state) => state.userReducer);
-
-
-
-
-    const titleRef = useRef<HTMLInputElement>(null);
-    const contentRef = useRef<HTMLTextAreaElement>(null);
-    const shortSumRef = useRef<HTMLTextAreaElement>(null);
-    const thumbnailRef = useRef<HTMLInputElement>(null);
-
+    
+    
+    const [title, setTitle] = useState("")
+    const [content, setContent] = useState("")
+    const [shortSum, setShortSum] = useState("")
+    const [thumbnail, setThumnbnail] = useState("")
+    
     const [category, setCategory] = useState('');
-    const [isPublished, setIsPublished] = useState(false);
-
+    const [isPublished, setIsPublished] = useState(true);
+    
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
-    const [message, setMessage] = useState('');
-
-
+    
+    
     useEffect(() => {
+        
+        const tkn = localStorage.getItem("tkn")
+        const signOutfromNavbar = sessionStorage.getItem('logout_in_progress') === 'true';
 
+        if (signOutfromNavbar && (!isAuth && !tkn)) {
+            sessionStorage.removeItem('logout_in_progress')
+            router.replace('/')
+            return
+        }
+
+
+        if (!isAuth && !tkn) {
+            router.replace('/signin')
+            return
+        }
 
         const getPostData = async () => {
             setIsLoading(true);
             try {
                 const response = await apiCall.get(`posts/${objectId}`);
+
+
                 const postData: Post = response.data;
 
 
-                if (titleRef.current) titleRef.current.value = postData.title;
-                if (contentRef.current) contentRef.current.value = postData.content;
-                if (shortSumRef.current) shortSumRef.current.value = postData.shortSum || '';
-                if (thumbnailRef.current) thumbnailRef.current.value = postData.thumbnail || '';
+
+                setTitle(postData.title)
+                setContent(postData.content)
+                setShortSum(postData.shortSum || '')
+                setThumnbnail(postData.thumbnail || '')
 
                 setCategory(postData.category || '');
-                setIsPublished(postData.isPublished || false);
+                setIsPublished(postData.published);
 
             } catch (error) {
-                setMessage("Failed to load post data for editing.");
+                toast.error("Failed to load post data for editing")
             } finally {
                 setIsLoading(false);
             }
@@ -76,18 +92,12 @@ export default function EditSection({ objectId }: { objectId: string }) {
 
         e.preventDefault();
 
-        const title = titleRef.current?.value || '';
-        const content = contentRef.current?.value || '';
-        const shortSum = shortSumRef.current?.value || '';
-        const thumbnail = thumbnailRef.current?.value || '';
-
         if (!title || !content || !category) {
-            setMessage("Title, Content, and Category are required.");
+            toast.warn("Title, Content, and Category are required.")
             return;
         }
         setIsLoading(true);
         setIsSaving(true)
-        setMessage('');
 
         try {
 
@@ -101,11 +111,11 @@ export default function EditSection({ objectId }: { objectId: string }) {
                 published: isPublished
             });
 
-            setMessage("Post updated successfully!");
+            toast.success("Post updated successfully!")
             setTimeout(() => router.push('/my-posts'), 1500);
 
         } catch (error) {
-            setMessage("Failed to update post.");
+            toast.error("Failed to update post")
         } finally {
             setIsLoading(false);
         }
@@ -117,13 +127,13 @@ export default function EditSection({ objectId }: { objectId: string }) {
     }
     return (
         <div>
-            <PageHeader title="Edit Post" subtitle="Refine your content." />
+            <PageHeader title="Edit Post" subtitle="Perbarui konten anda." />
             <div className="container mx-auto max-w-2xl py-12 px-4">
                 <form onSubmit={handleUpdate} className="space-y-6">
 
                     <div className="space-y-2">
                         <Label htmlFor="title">Title</Label>
-                        <Input id="title" ref={titleRef} />
+                        <Input id="title" value={title} onChange={e => setTitle(e.target.value)} />
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="category">Category</Label>
@@ -141,15 +151,15 @@ export default function EditSection({ objectId }: { objectId: string }) {
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="shortSum">Short Summary</Label>
-                        <Textarea id="shortSum" ref={shortSumRef} rows={3} />
+                        <Textarea id="shortSum" value={shortSum} onChange={e => setShortSum(e.target.value)} rows={3} />
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="thumbnail">Thumbnail Image URL</Label>
-                        <Input id="thumbnail" ref={thumbnailRef} />
+                        <Input id="thumbnail" value={thumbnail} onChange={e => setThumnbnail(e.target.value)} />
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="content">Content</Label>
-                        <Textarea id="content" ref={contentRef} rows={15} />
+                        <Textarea id="content" value={content} onChange={e => setContent(e.target.value)} rows={15} />
                     </div>
                     <div className="flex items-center space-x-2">
                         <Checkbox id="isPublished" checked={isPublished} onCheckedChange={(checked) => setIsPublished(Boolean(checked))} />
@@ -158,7 +168,6 @@ export default function EditSection({ objectId }: { objectId: string }) {
                     <Button type="submit" className="w-full" disabled={isLoading}>
                         {isSaving ? 'Saving...' : 'Save Changes'}
                     </Button>
-                    {message && <p className={`text-center text-sm mt-4 ${message.includes("successfully") ? 'text-green-600' : 'text-red-600'}`}>{message}</p>}
                 </form>
             </div>
         </div>

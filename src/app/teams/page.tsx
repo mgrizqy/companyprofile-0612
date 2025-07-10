@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 
 import axios from "axios";
+import { Footer } from "../components/Footer";
 
 
 interface TeamMember {
@@ -27,10 +28,10 @@ export default function TeamsPage() {
     const fetchTeamData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("https://randomuser.me/api/?results=6&?gender=male&?nat=ca");
+        const response = await axios.get("https://randomuser.me/api/?results=6&?gender=male&?nat=ca"); 
         setTeam(response.data.results);
       } catch (error) {
-        console.error(error);
+        console.error("Error occured when fetching ",error);
        
       } finally {
         setIsLoading(false);
@@ -80,6 +81,7 @@ export default function TeamsPage() {
           </div>
         )}
       </div>
+      <Footer></Footer>
     </main>
   );
 }

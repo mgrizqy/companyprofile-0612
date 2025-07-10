@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { apiCall } from "@/helper/apiCall";
 import { setSignIn, setSignOut } from "@/lib/redux/features/userSlice";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 
@@ -36,7 +37,7 @@ export const NavBar = () => {
   const auth = useAppSelector((state => state.userReducer.isAuth));
   const dispatch = useDispatch();
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+ 
   const router = useRouter();
   
   
@@ -46,52 +47,52 @@ export const NavBar = () => {
   
       
       const tkn = localStorage.getItem("tkn")
-      // setIsLoggedIn(!!tkn)
-  
+      
+      
       try {
-  
-  
+        
+        
         const res = await apiCall.get(`accounts/${tkn}`)
-  
+        
         const userEmail = localStorage.getItem("userEmail")
-  
+        
         dispatch(setSignIn({
-  
+          
           ObjectId: tkn, 
           username: userEmail,
           email: userEmail,
           isAuth: true, 
-  
+          
         }))
-  
-  
+        
+        
       } catch (error) {
-  
-  
+        
+        
         console.log(error)
         handleSignOut()
         
-  
+        
       }
-  
-  
+      
+      
     }
-
-
-
-
+    
+    
+    
+    
     keepLogin()
-
+    
   }, [dispatch])
-
-
-
+  
+  
+  
   const handleSignOut = () => {
     dispatch(setSignOut());
     localStorage.removeItem("tkn");
     localStorage.removeItem("userEmail");
-    // setIsLoggedIn(false); 
-    router.push('/');
+    sessionStorage.setItem('logout_in_progress', 'true');
+    toast.success("You have been signed out")
   };
 
   
@@ -214,9 +215,10 @@ export const NavBar = () => {
 
                   <div>
 
-                    <Button type="button" asChild className=" font-bold uppercase  mt-4 w-full" onClick={() => { dispatch(setSignOut()); localStorage.removeItem("tkn") }}>
+                    <Button type="button" asChild className=" font-bold uppercase  mt-4 w-full" onClick={() => handleSignOut()}>
                       <p>Sign Out</p>
                     </Button>
+                     <Button type="button" className="  font-bold uppercase  mt-4 w-full bg-[var(--baseYellow)] text-black hover:bg-yellow-400"><Link href={"/my-posts"}>My Posts</Link></Button>
 
                   </div>
 

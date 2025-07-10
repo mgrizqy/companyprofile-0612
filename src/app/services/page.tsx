@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card" 
+import { Footer } from "../components/Footer";
 
 export default function ServicesPage() {
   return (
@@ -54,6 +55,7 @@ export default function ServicesPage() {
           ))}
         </div>
       </div>
+      <Footer></Footer>
     </main>
   );
 }

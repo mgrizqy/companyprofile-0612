@@ -7,39 +7,44 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRef, useState } from "react";
 import { apiCall } from "@/helper/apiCall";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
 
-
+    const router = useRouter()
     const [isLoading, SetLoading] = useState(false)
-    const [message, SetMessage] = useState("")
 
-    
 
-     const emailRef = useRef<HTMLInputElement>(null)
+
+    const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
 
 
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
         SetLoading(true);
-        SetMessage("")
+
 
         const email = emailRef.current?.value
         const password = passwordRef.current?.value
 
         try {
             const res = await apiCall.post("accounts", { email, password })
-            SetMessage(`Registration successful!`)
+            toast.success(`Registration successful!`)
 
         } catch (error) {
             console.log(error)
-            SetMessage("An error occured")
+            toast.error("An error occured")
         } finally {
             SetLoading(false);
         }
 
         console.log("Submitting:", { email, password })
+
+        const routerNav = setTimeout(() => router.replace('/signin'), 1000)
+        return () => clearTimeout(routerNav)
+
     }
 
     return (
@@ -66,11 +71,6 @@ export default function SignUpPage() {
                             <Button type="submit" className="w-full" disabled={isLoading}>
                                 {isLoading ? "Creating Account..." : "Create Account"}
                             </Button>
-
-
-                            {message && (<p className={`text-center text-sm ${message.includes("successful") ? "text-green-600" : "text-red-600"}`}>
-                                {message}
-                            </p>)}
 
                         </form>
                     </CardContent>

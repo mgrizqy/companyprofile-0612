@@ -13,25 +13,40 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { blogCategories } from '@/data/categoriesData';
 import { generateSlug } from '@/helper/generateSlug';
+import { toast } from 'react-toastify';
 
 
 
 export default function CreateBlogPage() {
     const router = useRouter();
     const { isAuth, email } = useAppSelector((state) => state.userReducer);
-
+    
     const titleRef = useRef<HTMLInputElement>(null);
     const contentRef = useRef<HTMLTextAreaElement>(null);
     const shortSumRef = useRef<HTMLTextAreaElement>(null);
     const thumbnailRef = useRef<HTMLInputElement>(null);
-
-
+    
+    
     const [category, setCategory] = useState('');
     const [isPublished, setIsPublished] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-    const [message, setMessage] = useState('');
-
+ 
+    
     useEffect(() => {
+        
+        const tkn = localStorage.getItem("tkn")
+        const signOutfromNavbar = sessionStorage.getItem('logout_in_progress') === 'true';
+
+        if (signOutfromNavbar && (!isAuth && !tkn)) {
+            sessionStorage.removeItem('logout_in_progress')
+            router.replace('/')
+            return
+        }
+
+        if (!isAuth && !tkn) {
+            router.replace('/signin')
+            return
+        }
 
     }, [isAuth, router]);
 
@@ -43,12 +58,11 @@ export default function CreateBlogPage() {
         const thumbnail = thumbnailRef.current?.value || '';
 
         if (!title || !content || !category) {
-            setMessage("Title, Content, and Category are required.");
+            toast.warn("Title, Content, and Category are required.")
             return;
         }
 
         setIsLoading(true);
-        setMessage('');
 
         try {
 
@@ -70,12 +84,12 @@ export default function CreateBlogPage() {
             if (shortSumRef.current) shortSumRef.current.value = '';
             if (thumbnailRef.current) thumbnailRef.current.value = '';
             setCategory('');
-            setMessage('The post has been published/saved successfully');
+            toast.success('The post has been published/saved successfully')
             setTimeout(() => router.push('/my-posts'), 1500);
 
         } catch (error) {
             console.error("Failed to create post:", error);
-            setMessage( 'An error occurred.');
+            toast.error('An error occurred')
         } finally {
             setIsLoading(false);
         }
@@ -86,7 +100,7 @@ export default function CreateBlogPage() {
 
     return (
         <main>
-            <PageHeader title="Create New Post" subtitle="Share your thoughts with the community." />
+            <PageHeader title="Create New Post" subtitle="Bagikan pengetahuan anda ke komunitas." />
             <div className="container mx-auto max-w-2xl py-12 px-4">
                 <form onSubmit={handleSubmit} className="space-y-6">
 
@@ -118,7 +132,6 @@ export default function CreateBlogPage() {
                         <Textarea
                             id="shortSum"
                             ref={shortSumRef}
-                            placeholder="A short summary for the blog list page..."
                             rows={3}
                             maxLength={250}
                         />
@@ -149,7 +162,6 @@ export default function CreateBlogPage() {
                     <Button type="submit" className="w-full" disabled={isLoading}>
                         {isLoading ? 'Publishing...' : 'Publish Post'}
                     </Button>
-                    {message && <p className={`text-center text-sm mt-4 ${message.includes('successfully') ? 'text-green-600' : 'text-red-600'}`}>{message}</p>}
                 </form>
             </div>
         </main>

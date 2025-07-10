@@ -17,6 +17,7 @@ const initialData: IUser = {
   ObjectId:"",
   username: "",
   email: "",
+  isAuth:false
 };
 
 // Define slice config to create function reducer and action
