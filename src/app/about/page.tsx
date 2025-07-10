@@ -7,7 +7,7 @@ export default function AboutPage() {
       <PageHeader
         title="About Us"
         subtitle="Pelajari tentang sejarah dan misi Gold's Gym Indonesia."
-        image={{src:"/images/gymfront.jpg",alt:"An image of the front of Gold's gym's gym"}}
+        image={{src:"/images/gymfront.webp",alt:"An image of the front of Gold's gym's gym"}}
       />
       <div className="container mx-auto max-w-screen-md py-12 px-4">
         <p className="text-lg text-gray-800 leading-relaxed mb-5">
