@@ -7,9 +7,9 @@ import { Footer } from "@/app/components/Footer";
 
 
 interface BlogParamSlug  {
-  params: {
-    slug: string;
-  };
+  params: Promise<{
+   slug:string
+  }>;
 }
 
 
@@ -33,8 +33,9 @@ async function getPost(slug: string): Promise<Post | null> {
 
 export default async function BlogPostPage({ params }: BlogParamSlug ) {
   
+  const {slug} = await params
   
-  const postData = await getPost(params.slug);
+  const postData = await getPost(slug);
 
   if (!postData) {
     notFound(); 
