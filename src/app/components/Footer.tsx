@@ -7,7 +7,7 @@ export function Footer() {
         <p className="font-oswald text-2xl uppercase tracking-wider">Stronger Together, Be Part of Us!</p>
         <div className="mt-6 border-t border-gray-700 pt-6">
           <p className="text-sm text-gray-400">
-            © 2025 Gold's Gym. All Rights Reserved.
+            {"© 2025 Gold's Gym. All Rights Reserved."}
           </p>
           <div className="flex justify-center gap-4 mt-4">
             <Link href="/about" className="text-sm text-gray-300 hover:text-white">About Us</Link>

@@ -23,6 +23,7 @@ export default function BlogPage() {
 
     useEffect(() => {
         const getPosts = async () => {
+            setCategories(blogCategories)
             setIsLoading(true);
             try {
                 const response = await apiCall.get('/posts?where=%60published%60%20%3D%20TRUE&sortBy=%60created%60%20desc');
@@ -139,7 +140,7 @@ export default function BlogPage() {
 
                         {filteredPosts.length === 0 && selectedCategory !== "All" && (
                             <div className="text-center col-span-full mt-8">
-                                <p className="text-gray-500">No posts found in the "{selectedCategory}" category.</p>
+                                <p className="text-gray-500">No posts found in the &quot;{selectedCategory}&quot; category.</p>
                             </div>
                         )}
                     </>

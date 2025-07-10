@@ -62,7 +62,7 @@ export default function SignInPage() {
 
 
 
-        } catch (error: any) {
+        } catch (error) {
             console.log(error)
             SetMessage("An error occured")
         } finally {

@@ -25,7 +25,7 @@ export function WelcomeSection() {
 
             
             <p className="mt-6 text-base md:text-lg text-gray-700 font-inter leading-relaxed">
-              Gold's Gym Indonesia telah beroperasi di bawah perwakilan perusahaan PT Fit and Health Indonesia sejak 2007. Gold's Gym dibangun untuk membantu para member mewujudkan tujuan dan menemukan kekuatan mereka. 
+              {"Gold's Gym Indonesia telah beroperasi di bawah perwakilan perusahaan PT Fit and Health Indonesia sejak 2007. Gold's Gym dibangun untuk membantu para member mewujudkan tujuan dan menemukan kekuatan mereka."}
             </p>
 
             

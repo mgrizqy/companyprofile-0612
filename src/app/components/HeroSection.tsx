@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
-
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -18,7 +18,7 @@ import { HeroSlide,heroSlidesData } from "@/data/heroData";
 const GoldGymWordmark = () => (
 
              <svg className="text-white scale-45 md:scale-100" width="1000" height="100" viewBox="0 0 1812 155" fill="none" xmlns="http://www.w3.org/2000/svg" >
-	<title>Gold's Gym</title>
+	<title>Gold&apos;s Gym</title>
 	<path d="M1517.1 32.2661L1485.56 50.3271L1442.12 89.6496V101.081L1476.87 122.114H1358.9L1393.88 101.081V89.6496L1348.84 48.7267L1317.06 32.2661H1428.86L1405.08 48.7267L1430.23 70.4456L1454.92 47.1264L1431.14 32.2661H1517.1Z" fill="currentColor"/>
 	<path d="M1289.39 32.0385V71.8183C1266.3 54.4432 1241.38 45.7556 1214.41 45.7556C1202.52 45.7556 1193.14 48.7277 1186.29 54.4432C1179.66 60.1587 1176.23 68.389 1176.23 78.9055C1176.23 99.4812 1189.49 109.54 1215.78 109.54C1227.9 109.54 1237.73 107.254 1245.04 102.682V97.8809L1206.18 76.6193H1325.74L1290.99 97.8809V126.458L1269.96 117.085C1250.3 123.258 1229.72 126.458 1208.69 126.458C1183.31 126.458 1162.05 121.886 1144.91 112.97C1127.76 104.054 1119.07 92.8513 1119.07 79.5913C1119.07 65.6455 1128.45 53.7573 1147.19 43.9267C1165.94 33.8674 1188.34 29.0664 1214.41 29.0664C1236.58 29.0664 1255.79 32.9529 1271.56 40.9546L1289.39 32.0385Z" fill="currentColor"/>
 	<path d="M617.254 73.8749V122.114H431.844L466.594 101.309V53.2991L431.844 32.2661H550.726L515.747 53.2991V104.281H574.502L617.254 73.8749Z" fill="currentColor"/>
@@ -36,7 +36,7 @@ const GoldGymWordmark = () => (
 
 export function HeroSection() {
   
-  const [plugin, setPlugin] = React.useState(() =>
+  const [plugin, setPlugin] = useState(() =>
     Autoplay({ delay: 5000, stopOnInteraction: true })
   );
 

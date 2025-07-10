@@ -32,7 +32,7 @@ export default function SignUpPage() {
             const res = await apiCall.post("/accounts", { email, password })
             SetMessage(`Registration successful!`)
 
-        } catch (error: any) {
+        } catch (error) {
             console.log(error)
             SetMessage("An error occured")
         } finally {

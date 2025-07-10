@@ -12,7 +12,7 @@ export function ContactSection() {
             Visit Us
           </h2>
           <p className="mt-4 text-lg text-gray-600 font-inter max-w-2xl mx-auto">
-            We're ready to welcome you. Find our location and opening hours below.
+            {"We're ready to welcome you. Find our location and opening hours below."}
           </p>
         </div>
 

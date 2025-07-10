@@ -73,9 +73,9 @@ export default function CreateBlogPage() {
             setMessage('The post has been published/saved successfully');
             setTimeout(() => router.push('/my-posts'), 1500);
 
-        } catch (error: any) {
+        } catch (error) {
             console.error("Failed to create post:", error);
-            setMessage(error.response?.data?.message || 'An error occurred.');
+            setMessage( 'An error occurred.');
         } finally {
             setIsLoading(false);
         }

@@ -32,7 +32,7 @@ export function TestimonialsSection() {
                 </svg> */}
                 
                 <p className="text-gray-700 font-inter text-lg italic leading-relaxed">
-                  "{testimonial.quote}"
+                  {`"${testimonial.quote}"`}
                 </p>
                 
                 <div className="mt-6 flex flex-col items-center">

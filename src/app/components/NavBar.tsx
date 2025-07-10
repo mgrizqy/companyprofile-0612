@@ -10,7 +10,7 @@ import {
   SheetTitle, SheetHeader, SheetDescription
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppSelector } from "@/lib/redux/hooks";
 import { useDispatch } from "react-redux";
 import { apiCall } from "@/helper/apiCall";
@@ -36,7 +36,7 @@ export const NavBar = () => {
   const auth = useAppSelector((state => state.userReducer.isAuth));
   const dispatch = useDispatch();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
   
   
@@ -90,7 +90,7 @@ export const NavBar = () => {
     dispatch(setSignOut());
     localStorage.removeItem("tkn");
     localStorage.removeItem("userEmail");
-    setIsLoggedIn(false); 
+    // setIsLoggedIn(false); 
     router.push('/');
   };
 
@@ -118,7 +118,7 @@ export const NavBar = () => {
               </svg>
             </div>
             <h1 className="hidden md:block text-2xl font-bold tracking-tighter text-black font-oswald uppercase">
-              Gold's Gym
+              {"Gold's Gym"}
             </h1>
           </Link>
         </div>
@@ -196,7 +196,7 @@ export const NavBar = () => {
               </svg>
                   </div>
                   <h1 className="text-xl font-bold tracking-tighter text-black font-oswald uppercase">
-                    Gold's Gym
+                    {"Gold's Gym"}
                   </h1>
                 </Link>
 
