@@ -51,7 +51,7 @@ export const NavBar = () => {
       try {
   
   
-        const res = await apiCall.get(`/accounts/${tkn}`)
+        const res = await apiCall.get(`accounts/${tkn}`)
   
         const userEmail = localStorage.getItem("userEmail")
   

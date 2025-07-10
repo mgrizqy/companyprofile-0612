@@ -41,7 +41,7 @@ export default function MyPostsPage() {
     const getAllPosts = async () => {
       setIsLoading(true);
       try {
-        const response = await apiCall.get('/posts');
+        const response = await apiCall.get('posts');
         
         const sortedPosts = response.data.sort((a: Post, b: Post) => b.created - a.created);
         setPosts(sortedPosts);

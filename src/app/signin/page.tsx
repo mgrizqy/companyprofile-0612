@@ -38,7 +38,7 @@ export default function SignInPage() {
         const urlWhere: string = `email = '${email}' AND password = '${password}'`
 
         try {
-            const res = await apiCall.get(`/accounts`, { params: { where: urlWhere } })
+            const res = await apiCall.get(`accounts`, { params: { where: urlWhere } })
 
             if (res.data.length === 0) {
                 SetMessage("Account doesn't exist");

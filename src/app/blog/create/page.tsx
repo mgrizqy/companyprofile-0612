@@ -53,7 +53,7 @@ export default function CreateBlogPage() {
         try {
 
 
-            await apiCall.post('/posts', {
+            await apiCall.post('posts', {
                 title,
                 slug: generateSlug(title),
                 content,

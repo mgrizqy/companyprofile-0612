@@ -47,7 +47,7 @@ export default function EditSection({ objectId }: { objectId: string }) {
         const getPostData = async () => {
             setIsLoading(true);
             try {
-                const response = await apiCall.get(`/posts/${objectId}`);
+                const response = await apiCall.get(`posts/${objectId}`);
                 const postData: Post = response.data;
 
 
@@ -91,7 +91,7 @@ export default function EditSection({ objectId }: { objectId: string }) {
 
         try {
 
-            await apiCall.put(`/posts/${objectId}`, {
+            await apiCall.put(`posts/${objectId}`, {
                 title,
                 slug: generateSlug(title),
                 content,

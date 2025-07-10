@@ -26,7 +26,7 @@ export default function BlogPage() {
             setCategories(blogCategories)
             setIsLoading(true);
             try {
-                const response = await apiCall.get('/posts?where=%60published%60%20%3D%20TRUE&sortBy=%60created%60%20desc');
+                const response = await apiCall.get('posts?where=%60published%60%20%3D%20TRUE&sortBy=%60created%60%20desc');
                 const posts: Post[] = response.data;
 
 

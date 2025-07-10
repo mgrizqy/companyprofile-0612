@@ -17,7 +17,7 @@ async function getPost(slug: string): Promise<Post | null> {
   try {
     
     const urlWhere = `slug = '${slug}'`;
-    const response = await apiCall.get(`/posts`, { params: { where: urlWhere } });
+    const response = await apiCall.get(`posts`, { params: { where: urlWhere } });
 
     if (response.data && response.data.length > 0) {
       return response.data[0];

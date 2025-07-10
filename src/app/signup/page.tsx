@@ -29,7 +29,7 @@ export default function SignUpPage() {
         const password = passwordRef.current?.value
 
         try {
-            const res = await apiCall.post("/accounts", { email, password })
+            const res = await apiCall.post("accounts", { email, password })
             SetMessage(`Registration successful!`)
 
         } catch (error) {
