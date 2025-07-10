@@ -13,7 +13,7 @@ export function PageHeader({ title, subtitle, image }: PageHeaderProps) {
 
 
     <div className={`mt-21`}>
-      {image ? (<Image src={image.src} alt={image.alt} width={5000} height={5000} className="w-full h-150 object-cover object-top" />) : (null) }
+      {image ? (<Image src={image.src} alt={image.alt} width={5000} height={5000} className="w-full h-60 md:h-150 object-cover object-center" />) : (null) }
       <div className="bg-gray-100 pt-16 pb-16 text-center flex justify-center items-center">
         <div className="  px-4">
           <h1 className="font-oswald text-5xl md:text-6xl font-bold uppercase text-black">
