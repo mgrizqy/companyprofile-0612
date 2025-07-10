@@ -46,7 +46,7 @@ export default function TeamsPage() {
       <PageHeader
         title="Meet Our Experts"
         subtitle="Tim pelatih kami yang bersertifikat dan berdedikasi siap membantu Anda."
-        image={{src:"/images/personalTrainer-banner.jpg", alt:"A banner of Gold's gym personal trainer"}}
+        image={{src:"/images/personalTrainer-banner.webp", alt:"A banner of Gold's gym personal trainer"}}
       />
       
       <div className="container mx-auto max-w-screen-xl py-16 px-4">

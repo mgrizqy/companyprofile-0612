@@ -37,7 +37,7 @@ export function WelcomeSection() {
          
           <div className="w-full md:w-6/12">
             <Image
-              src="/images/kalibata-anniversary-1.jpg"
+              src="/images/kalibata-anniversary-1.webp"
               alt="A diverse group of members smiling and working out at a Gold's Gym facility in Indonesia"
               width={1600}
               height={1200}
