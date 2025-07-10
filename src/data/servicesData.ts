@@ -5,7 +5,7 @@
   image: string;
 }
 
-const placeholder1 : string = `/images/gymillus.jpg`
+const placeholder1 : string = `/images/gymillus.webp`
 
  
  export const services: Service[] = [
