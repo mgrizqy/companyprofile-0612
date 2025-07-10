@@ -7,6 +7,7 @@ export interface HeroSlide {
   descText: string;
   link: string;
   isBrandSlide?: boolean; 
+  alt:string;
 }
 
 export const heroSlidesData: HeroSlide[] = [
@@ -18,6 +19,7 @@ export const heroSlidesData: HeroSlide[] = [
     descText: "Gabung Sekarang",
     link: "/signup",
     isBrandSlide: true, 
+    alt: "A group of people doing exercise together"
   },
   {
     id: 2,
@@ -26,6 +28,7 @@ export const heroSlidesData: HeroSlide[] = [
     subheadline: "Nama paling dikenal di dunia kebugaran. Tempat terbaik untuk membangun legasi Anda.",
     descText: "Kisah Kami",
     link: "/about",
+    alt: "A man sitting, getting ready for exercise"
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ export const heroSlidesData: HeroSlide[] = [
     subheadline: "Peralatan terbaik, pelatih ahli, dan komunitas yang selalu mendukung Anda.",
     descText: "Lihat Membership",
     link: "/services",
+    alt: "Gold's gym room"
   },
   
 ];

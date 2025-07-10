@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { HeroSlide,heroSlidesData } from "@/data/heroData";
+import Image from "next/image";
 
 
 
@@ -53,13 +54,16 @@ export function HeroSection() {
           {heroSlidesData.map((slide: HeroSlide) => (
             <CarouselItem key={slide.id} className="h-full">
               <Card className="h-full w-full border-none rounded-none">
-                <CardContent className="relative flex flex-col items-center justify-center h-full p-0">
-                  <div
-                    className="absolute inset-0 bg-cover bg-[50%_40%] z-0"
-                    style={{ backgroundImage: `url(${slide.image})` }}
+                <CardContent className="relative flex flex-col items-center justify-center h-full p-0 overflow-hidden">
+                  <div className="">
+                  <Image src={slide.image} alt={slide.alt}
+                    fill
+                    priority
+                    className="absolute inset-0 object-cover object-[50%_40%] z-0 "
                   />
+                  </div>
                   <div className="absolute inset-0 bg-black/40 z-10" />
-
+              
                   
                   {slide.isBrandSlide ? (
                     

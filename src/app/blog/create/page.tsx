@@ -159,7 +159,7 @@ export default function CreateBlogPage() {
                         <Label htmlFor="isPublished">Publish this post immediately</Label>
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={isLoading}>
+                    <Button type="submit" className="w-full hover:cursor-pointer" disabled={isLoading}>
                         {isLoading ? 'Publishing...' : 'Publish Post'}
                     </Button>
                 </form>

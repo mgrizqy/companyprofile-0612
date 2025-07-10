@@ -165,7 +165,7 @@ export default function EditSection({ objectId }: { objectId: string }) {
                         <Checkbox id="isPublished" checked={isPublished} onCheckedChange={(checked) => setIsPublished(Boolean(checked))} />
                         <Label htmlFor="isPublished">Publish this post</Label>
                     </div>
-                    <Button type="submit" className="w-full" disabled={isLoading}>
+                    <Button type="submit" className="w-full hover:cursor-pointer " disabled={isLoading}>
                         {isSaving ? 'Saving...' : 'Save Changes'}
                     </Button>
                 </form>

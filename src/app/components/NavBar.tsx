@@ -38,7 +38,6 @@ export const NavBar = () => {
   const dispatch = useDispatch();
 
  
-  const router = useRouter();
   
   
   useEffect(() => {
@@ -92,7 +91,6 @@ export const NavBar = () => {
     localStorage.removeItem("tkn");
     localStorage.removeItem("userEmail");
     sessionStorage.setItem('logout_in_progress', 'true');
-    toast.success("You have been signed out")
   };
 
   
@@ -144,8 +142,8 @@ export const NavBar = () => {
           {auth ? (
             <div className="space-x-3 flex items-center">
               <p>{userMail}</p>
-              <Button type="button" onClick={() => { handleSignOut() }}>Sign Out</Button>
-              <Button type="button" className="bg-[var(--baseYellow)] text-black hover:bg-yellow-400"><Link href={"/my-posts"}>My Posts</Link></Button>
+              <Button type="button" onClick={() => { handleSignOut();toast.success("You have been signed out") }} className="hover:cursor-pointer">Sign Out</Button>
+              <Button type="button" className="bg-[var(--baseYellow)] text-black hover:bg-yellow-400 hover:cursor-pointer"><Link href={"/my-posts"}>My Posts</Link></Button>
             </div>
           ) : (
             <div className="flex items-center  gap-2">

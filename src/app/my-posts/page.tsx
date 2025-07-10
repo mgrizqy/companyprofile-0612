@@ -194,7 +194,7 @@ export default function MyPostsPage() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel onClick={() => setDialog({objectId : "", isOpen : false})} className='hover:cursor-pointer'>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => handleDelete(dialog.objectId)} className="hover:cursor-pointer bg-red-600 text-white hover:bg-red-700 transition-all">{isDeleting ? "Deleting.." : "Delete"}  {isDeleting && <div className="flex justify-center transition-all"><Loader2 className="h-8 w-8 animate-spin transition-all" /></div>}</AlertDialogAction>
+                  <AlertDialogAction onClick={() => handleDelete(dialog.objectId)} className="hover:cursor-pointer bg-red-600 text-white hover:bg-red-700 transition-transform">{isDeleting ? "Deleting.." : "Delete"}  {isDeleting && <div className="flex justify-center transition-all"><Loader2 className="h-8 w-8 animate-spin transition-all" /></div>}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

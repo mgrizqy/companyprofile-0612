@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card" 
 import { Footer } from "../components/Footer";
+import { Button } from "@/components/ui/button";
 
 export default function ServicesPage() {
   return (
@@ -49,7 +50,7 @@ export default function ServicesPage() {
                 </CardDescription>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                {/* Can add a button here later if needed */}
+               <Button className="hover:cursor-pointer w-[100%]">LEARN MORE</Button>
               </CardFooter>
             </Card>
           ))}
