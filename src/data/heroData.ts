@@ -1,0 +1,39 @@
+
+export interface HeroSlide {
+  id: number;
+  image: string;
+  headline: string;
+  subheadline?: string; 
+  descText: string;
+  link: string;
+  isBrandSlide?: boolean; 
+}
+
+export const heroSlidesData: HeroSlide[] = [
+ 
+  {
+    id: 1,
+    image: "/images/testYellow3.png", 
+    headline: "Gold's Gym",
+    descText: "Gabung Sekarang",
+    link: "/signup",
+    isBrandSlide: true, 
+  },
+  {
+    id: 2,
+    image: "/images/hero-image-1.jpg",
+    headline: "STRENGTH FOR LIFE",
+    subheadline: "Nama paling dikenal di dunia kebugaran. Tempat terbaik untuk membangun legasi Anda.",
+    descText: "Kisah Kami",
+    link: "/about",
+  },
+  {
+    id: 3,
+    image: "/images/hero-image-2-1.jpg",
+    headline: "YOUR LEGACY STARTS HERE",
+    subheadline: "Peralatan terbaik, pelatih ahli, dan komunitas yang selalu mendukung Anda.",
+    descText: "Lihat Membership",
+    link: "/services",
+  },
+  
+];
